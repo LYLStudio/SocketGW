@@ -46,6 +46,8 @@ public sealed class UpstreamServerConfig
 
     public bool TryValidate([NotNullWhen(true)] out string? error)
     {
+        var result = true;
+        error = null;
         if (string.IsNullOrWhiteSpace(NodeId))
         {
             error = "NodeId is required";
@@ -61,8 +63,6 @@ public sealed class UpstreamServerConfig
             error = "Port must be between 1 and 65535";
             return false;
         }
-
-        error = null;
-        return true;
+        return result;
     }
 }
