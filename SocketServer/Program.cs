@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using System.Threading;
 using SocketServerLib;
 
 Console.Title = "High Performance Socket Server";
@@ -6,11 +11,8 @@ await RunServerAsync();
 
 static async Task RunServerAsync()
 {
-    // ===== 伺服器配置 =====
-    var port = int.TryParse(Environment.GetEnvironmentVariable("SOCKET_SERVER_PORT"), out var p) ? p : 5000;
-    var maxConnections = int.TryParse(Environment.GetEnvironmentVariable("MAX_CONNECTIONS"), out var m) ? m : 100_000;
-    var backlog = int.TryParse(Environment.GetEnvironmentVariable("LISTEN_BACKLOG"), out var b) ? b : 10_000;
-    var dualMode = Environment.GetEnvironmentVariable("DUAL_MODE") == "true";
+    // ===== Load config from appsettings.json =====
+    var config = LoadServerConfig();
 
     var separator = new string('=', 60);
 
@@ -18,27 +20,30 @@ static async Task RunServerAsync()
     Console.WriteLine("  High-Performance Socket Server (.NET 10)");
     Console.WriteLine(separator);
     Console.WriteLine("  Config:");
-    Console.WriteLine($"    Port...........: {port}");
-    Console.WriteLine($"    Max Connections..: {maxConnections:N0}");
-    Console.WriteLine($"    Listen Backlog...: {backlog:N0}");
-    Console.WriteLine($"    Dual Mode (IPv6): {dualMode}");
+    Console.WriteLine($"    Port...........: {config.Port}");
+    Console.WriteLine($"    Max Connections..: {config.MaxConnections:N0}");
+    Console.WriteLine($"    Listen Backlog...: {config.Backlog:N0}");
+    Console.WriteLine($"    RX Buffer ......: {FormatBytes(config.ReceiveBufferSize)}");
+    Console.WriteLine($"    TX Buffer ......: {FormatBytes(config.SendBufferSize)}");
+    Console.WriteLine($"    Dual Mode (IPv6): {config.DualMode}");
+    Console.WriteLine($"    Config Source ..: {(config.FromFile ? "appsettings.json" : "defaults/ENV")}");
     Console.WriteLine(separator);
     Console.WriteLine();
 
     var server = new HighPerformanceSocketServer(
-        port: port,
-        backlog: backlog,
-        receiveBufferSize: 64 * 1024,
-        sendBufferSize: 64 * 1024,
-        dualMode: dualMode,
-        maxConnections: maxConnections);
+        port: config.Port,
+        backlog: config.Backlog,
+        receiveBufferSize: config.ReceiveBufferSize,
+        sendBufferSize: config.SendBufferSize,
+        dualMode: config.DualMode,
+        maxConnections: config.MaxConnections);
 
     // 訂閱連線事件
     server.ClientConnected += id => Console.WriteLine($"[+] Client connected: {id} (Active: {server.GetStatistics().CurrentConnections})");
     server.ClientDisconnected += id => Console.WriteLine($"[-] Client disconnected: {id} (Active: {server.GetStatistics().CurrentConnections})");
 
     // ===== 統計資訊報表 =====
-    var statsTimer = StartStatsReporter(server);
+    var statsTimer = StartStatsReporter(server, config.StatsIntervalSeconds);
 
     try
     {
@@ -55,7 +60,70 @@ static async Task RunServerAsync()
     }
 }
 
-static Timer StartStatsReporter(HighPerformanceSocketServer server)
+static ServerConfig LoadServerConfig()
+{
+    var config = new ServerConfig();
+    var configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
+
+    if (File.Exists(configPath))
+    {
+        try
+        {
+            var json = File.ReadAllText(configPath);
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+
+            if (root.TryGetProperty("Server", out var srvElem))
+            {
+                config.Port = GetInt(srvElem, "Port", 5000);
+                config.MaxConnections = GetInt(srvElem, "MaxConnections", 100_000);
+                config.Backlog = GetInt(srvElem, "Backlog", 10_000);
+                config.ReceiveBufferSize = GetInt(srvElem, "ReceiveBufferSize", 65_536);
+                config.SendBufferSize = GetInt(srvElem, "SendBufferSize", 65_536);
+                config.DualMode = GetBool(srvElem, "DualMode", false);
+                config.StatsIntervalSeconds = GetInt(srvElem, "StatsIntervalSeconds", 5);
+                config.FromFile = true;
+
+                Console.WriteLine("[Server] Config loaded from appsettings.json");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[Server] Config parse error: {ex.Message}. Using ENV/defaults.");
+        }
+    }
+
+    // Environment variables override file config
+    ApplyEnvOverrides(config);
+
+    return config;
+}
+
+static void ApplyEnvOverrides(ServerConfig config)
+{
+    if (int.TryParse(Environment.GetEnvironmentVariable("SOCKET_SERVER_PORT"), out var p))
+        config.Port = p;
+    if (int.TryParse(Environment.GetEnvironmentVariable("MAX_CONNECTIONS"), out var m))
+        config.MaxConnections = m;
+    if (int.TryParse(Environment.GetEnvironmentVariable("LISTEN_BACKLOG"), out var b))
+        config.Backlog = b;
+    var dual = Environment.GetEnvironmentVariable("DUAL_MODE");
+    if (dual != null)
+        config.DualMode = dual.Equals("true", StringComparison.OrdinalIgnoreCase);
+}
+
+static int GetInt(JsonElement elem, string name, int @default)
+{
+    return elem.TryGetProperty(name, out var p) && p.ValueKind == JsonValueKind.Number ? p.GetInt32() : @default;
+}
+
+static bool GetBool(JsonElement elem, string name, bool @default)
+{
+    return elem.TryGetProperty(name, out var p) &&
+           (p.ValueKind == JsonValueKind.True || p.ValueKind == JsonValueKind.False) ? p.GetBoolean() : @default;
+}
+
+static Timer StartStatsReporter(HighPerformanceSocketServer server, int intervalSec)
 {
     return new Timer(_ =>
     {
@@ -69,7 +137,7 @@ static Timer StartStatsReporter(HighPerformanceSocketServer server)
                 $"TX: {FormatBytes(stats.TotalBytesSent),12}");
         }
         catch { /* Ignore stats errors */ }
-    }, null, 5_000, 5_000);
+    }, null, intervalSec * 1000, intervalSec * 1000);
 }
 
 static string FormatBytes(long bytes) => bytes switch
@@ -80,3 +148,16 @@ static string FormatBytes(long bytes) => bytes switch
     < 1024 * 1024 * 1024 => $"{bytes / (1024.0 * 1024):F2} MB",
     _ => $"{bytes / (1024.0 * 1024 * 1024):F2} GB"
 };
+
+// ===== Config Model =====
+sealed class ServerConfig
+{
+    public int Port { get; set; } = 5000;
+    public int MaxConnections { get; set; } = 100_000;
+    public int Backlog { get; set; } = 10_000;
+    public int ReceiveBufferSize { get; set; } = 65_536;
+    public int SendBufferSize { get; set; } = 65_536;
+    public bool DualMode { get; set; } = false;
+    public int StatsIntervalSeconds { get; set; } = 5;
+    public bool FromFile { get; set; } = false;
+}
