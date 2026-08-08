@@ -1,0 +1,879 @@
+{
+  "files_in_context": [
+    {
+      "path": "SocketServer/SocketServer.csproj",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786163882264,
+      "cline_edit_date": null,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/SocketServer.csproj",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786163901345,
+      "cline_edit_date": 1786163901345,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Models/ClientSession.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786163940710,
+      "cline_edit_date": 1786163940710,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Models/ClientSession.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786163954823,
+      "cline_edit_date": 1786163954823,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Services/HighPerformanceSocketServer.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164120459,
+      "cline_edit_date": 1786164120459,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164174491,
+      "cline_edit_date": 1786164174491,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164201282,
+      "cline_edit_date": 1786164201282,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Models/ClientSession.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164233911,
+      "cline_edit_date": 1786164233911,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Services/HighPerformanceSocketServer.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164260140,
+      "cline_edit_date": 1786164260140,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Models/ClientSession.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164341560,
+      "cline_edit_date": 1786164341560,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Services/HighPerformanceSocketServer.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164530722,
+      "cline_edit_date": 1786164530722,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164593624,
+      "cline_edit_date": 1786164593624,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Services/HighPerformanceSocketServer.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164635133,
+      "cline_edit_date": 1786164635133,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Services/HighPerformanceSocketServer.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164673789,
+      "cline_edit_date": 1786164673789,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Services/HighPerformanceSocketServer.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164725485,
+      "cline_edit_date": 1786164725485,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Services/HighPerformanceSocketServer.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164790301,
+      "cline_edit_date": 1786164790301,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/README.md",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786164884673,
+      "cline_edit_date": 1786164884673,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketClient/SocketClient.csproj",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786165092812,
+      "cline_edit_date": 1786165092812,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketClient/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786165157258,
+      "cline_edit_date": 1786165157258,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketCommon/SocketCommon.csproj",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786165746870,
+      "cline_edit_date": 1786165746870,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketCommon/ClientSession.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786165822132,
+      "cline_edit_date": 1786165822132,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServerLib/SocketServerLib.csproj",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786165843235,
+      "cline_edit_date": 1786165843235,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServerLib/HighPerformanceSocketServer.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786165993113,
+      "cline_edit_date": 1786165993113,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketClientLib/SocketClientLib.csproj",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786166020364,
+      "cline_edit_date": 1786166020364,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketClientLib/TcpSocketClient.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786166082416,
+      "cline_edit_date": 1786166082416,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786166139746,
+      "cline_edit_date": 1786166139746,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/SocketServer.csproj",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786166163453,
+      "cline_edit_date": 1786166163453,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketClient/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786166203995,
+      "cline_edit_date": 1786166203995,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketClient/SocketClient.csproj",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786166226218,
+      "cline_edit_date": 1786166226218,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketClient/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786166372464,
+      "cline_edit_date": 1786166372464,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketLoadTest/SocketLoadTest.csproj",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786167993805,
+      "cline_edit_date": 1786167993805,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketLoadTest/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786168087824,
+      "cline_edit_date": 1786168087824,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketLoadTest/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786168130077,
+      "cline_edit_date": 1786168130077,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketLoadTest/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786168225231,
+      "cline_edit_date": 1786168225231,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/SocketGateway.csproj",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786169545446,
+      "cline_edit_date": 1786169545446,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Models/ServerNode.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786169589795,
+      "cline_edit_date": 1786169589795,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Models/GatewayConfig.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786169632693,
+      "cline_edit_date": 1786169632693,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/ServerPool.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786169690015,
+      "cline_edit_date": 1786169690015,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/HealthCheck/HealthChecker.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786169764322,
+      "cline_edit_date": 1786169764322,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/LoadBalancing/ILoadBalancer.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786169792008,
+      "cline_edit_date": 1786169792008,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/LoadBalancing/RoundRobinLoadBalancer.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786169846695,
+      "cline_edit_date": 1786169846695,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/LoadBalancing/LeastConnectionLoadBalancer.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786169874311,
+      "cline_edit_date": 1786169874311,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/ConnectionRelay.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786169928453,
+      "cline_edit_date": 1786169928453,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/GatewaySessionManager.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786169997297,
+      "cline_edit_date": 1786169997297,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/GatewayServer.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170162314,
+      "cline_edit_date": 1786170162314,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/GatewayApp.csproj",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170197794,
+      "cline_edit_date": 1786170197794,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/appsettings.json",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170227824,
+      "cline_edit_date": 1786170227824,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170322643,
+      "cline_edit_date": 1786170322643,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/GatewayServer.cs",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786170419059,
+      "cline_edit_date": 1786170162314,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/GatewayServer.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170445649,
+      "cline_edit_date": 1786170445649,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/ServerPool.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170486042,
+      "cline_edit_date": 1786170486042,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/GatewaySessionManager.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170502175,
+      "cline_edit_date": 1786170502175,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/HealthCheck/HealthChecker.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170533594,
+      "cline_edit_date": 1786170533594,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Models/GatewayConfig.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170651963,
+      "cline_edit_date": 1786170651963,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Models/ServerNode.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170720390,
+      "cline_edit_date": 1786170720390,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Models/ServerNode.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170762466,
+      "cline_edit_date": 1786170762466,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/Program.cs",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786170800071,
+      "cline_edit_date": 1786170322643,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786170831760,
+      "cline_edit_date": 1786170831760,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketLoadTest/Program.cs",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786171260678,
+      "cline_edit_date": 1786168225231,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketAdvancedTest/SocketAdvancedTest.csproj",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786171284896,
+      "cline_edit_date": 1786171284896,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketAdvancedTest/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786171492509,
+      "cline_edit_date": 1786171492509,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketAdvancedTest/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786171561495,
+      "cline_edit_date": 1786171561495,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/HealthCheck/HealthChecker.cs",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786171615429,
+      "cline_edit_date": 1786170533594,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/HealthCheck/HealthChecker.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786171644547,
+      "cline_edit_date": 1786171644547,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/GatewayServer.cs",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786171662522,
+      "cline_edit_date": 1786170445649,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketResilienceTest/SocketResilienceTest.csproj",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786173575209,
+      "cline_edit_date": 1786173575209,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketResilienceTest/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786173763867,
+      "cline_edit_date": 1786173763867,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketLoadTest/Program.cs",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786175949486,
+      "cline_edit_date": 1786168225231,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketAdvancedTest/Program.cs",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786175963991,
+      "cline_edit_date": 1786171561495,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketResilienceTest/Program.cs",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786175983964,
+      "cline_edit_date": 1786173763867,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketTests/SocketTests.csproj",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786176019800,
+      "cline_edit_date": 1786176019800,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketTests/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786176415259,
+      "cline_edit_date": 1786176415259,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketTests/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786176512572,
+      "cline_edit_date": 1786176512572,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketTests/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786176996909,
+      "cline_edit_date": 1786176996909,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketTests/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786177478946,
+      "cline_edit_date": 1786177478946,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketTests/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786177584774,
+      "cline_edit_date": 1786177584774,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketTests/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786177737780,
+      "cline_edit_date": 1786177737780,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/GatewayServer.cs",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178607760,
+      "cline_edit_date": 1786170445649,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/appsettings.json",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178616148,
+      "cline_edit_date": 1786170227824,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/Program.cs",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178625135,
+      "cline_edit_date": 1786170831760,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Program.cs",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178637678,
+      "cline_edit_date": 1786166139746,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketClientLib/TcpSocketClient.cs",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178652430,
+      "cline_edit_date": 1786166082416,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/appsettings.json",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178659219,
+      "cline_edit_date": 1786170227824,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketTests/Program.cs",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178668546,
+      "cline_edit_date": 1786177737780,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/Program.cs",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178674900,
+      "cline_edit_date": 1786170831760,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Models/GatewayConfig.cs",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178695604,
+      "cline_edit_date": 1786170651963,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/SocketGateway.csproj",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178755785,
+      "cline_edit_date": 1786169545446,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Core/GatewaySessionManager.cs",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178763105,
+      "cline_edit_date": 1786170502175,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketClient/Program.cs",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178768383,
+      "cline_edit_date": 1786166372464,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/appsettings.json",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178841977,
+      "cline_edit_date": 1786170227824,
+      "user_edit_date": null
+    },
+    {
+      "path": "GatewayApp/Program.cs",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178854014,
+      "cline_edit_date": 1786170831760,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketGateway/Models/GatewayConfig.cs",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178865657,
+      "cline_edit_date": 1786170651963,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Program.cs",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786178871197,
+      "cline_edit_date": 1786166139746,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/appsettings.json",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786178939901,
+      "cline_edit_date": 1786178939901,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/SocketServer.csproj",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786178950208,
+      "cline_edit_date": 1786178950208,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786178964936,
+      "cline_edit_date": 1786178964936,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786178977032,
+      "cline_edit_date": 1786178977032,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Program.cs",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786179000238,
+      "cline_edit_date": 1786179000238,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/Program.cs",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786179088336,
+      "cline_edit_date": 1786179088336,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/SocketServer.csproj",
+      "record_state": "stale",
+      "record_source": "read_tool",
+      "cline_read_date": 1786179117550,
+      "cline_edit_date": 1786178950208,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/SocketServer.csproj",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786179140004,
+      "cline_edit_date": 1786179140004,
+      "user_edit_date": null
+    },
+    {
+      "path": "SocketServer/README.md",
+      "record_state": "active",
+      "record_source": "read_tool",
+      "cline_read_date": 1786179991903,
+      "cline_edit_date": 1786164884673,
+      "user_edit_date": null
+    },
+    {
+      "path": "README.md",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786180003710,
+      "cline_edit_date": 1786180003710,
+      "user_edit_date": null
+    },
+    {
+      "path": "README.md",
+      "record_state": "active",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786180188860,
+      "cline_edit_date": 1786180188860,
+      "user_edit_date": null
+    },
+    {
+      "path": "BenchmarkRunner.sh",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786181453285,
+      "cline_edit_date": 1786181453285,
+      "user_edit_date": null
+    },
+    {
+      "path": "BenchmarkRunner.sh",
+      "record_state": "stale",
+      "record_source": "cline_edited",
+      "cline_read_date": 1786182473287,
+      "cline_edit_date": 1786182473287,
+      "user_edit_date": null
+    },
+    {
+      "path": "BenchmarkRunner.sh",
+      "record_state": "active",
+      "record_source": "user_edited",
+      "cline_read_date": 1786182473287,
+      "cline_edit_date": 1786182473287,
+      "user_edit_date": 1786182949991
+    }
+  ],
+  "model_usage": [
+    {
+      "ts": 1786163829646,
+      "model_id": "qwen3.6:27b",
+      "model_provider_id": "ollama",
+      "mode": "act"
+    }
+  ],
+  "environment_history": [
+    {
+      "ts": 1786163829645,
+      "os_name": "linux",
+      "os_version": "6.18.33.2-microsoft-standard-WSL2",
+      "os_arch": "x64",
+      "host_name": "Visual Studio Code",
+      "host_version": "1.132.0",
+      "cline_version": "4.1.6"
+    }
+  ]
+}
