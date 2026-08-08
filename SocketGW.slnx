@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="GatewayApp/GatewayApp.csproj" />
+  <Project Path="SocketClient/SocketClient.csproj" />
+  <Project Path="SocketClientLib/SocketClientLib.csproj" />
+  <Project Path="SocketCommon/SocketCommon.csproj" />
+  <Project Path="SocketGateway/SocketGateway.csproj" />
+  <Project Path="SocketLoadTest/SocketLoadTest.csproj" />
+  <Project Path="SocketServer/SocketServer.csproj" />
+  <Project Path="SocketServerLib/SocketServerLib.csproj" />
+</Solution>
