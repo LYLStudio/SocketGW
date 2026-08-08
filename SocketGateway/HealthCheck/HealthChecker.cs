@@ -19,6 +19,7 @@ public sealed class HealthChecker : IDisposable
 
     private readonly CancellationTokenSource _cts = new();
     private Task? _runningTask;
+    private bool _disposed;
 
     public event Action<ServerNode, NodeStatus>? NodeRecovered;
     public event Action<ServerNode, NodeStatus>? NodeFailed;
@@ -168,7 +169,9 @@ public sealed class HealthChecker : IDisposable
 
     public void Dispose()
     {
-        _cts.Cancel();
+        if (_disposed) return;
+        _disposed = true;
+        try { _cts.Cancel(); } catch { }
         _cts.Dispose();
     }
 }
