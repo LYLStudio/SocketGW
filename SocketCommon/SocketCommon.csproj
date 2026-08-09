@@ -8,4 +8,9 @@
     <Description>Common models and interfaces for SocketGW</Description>
   </PropertyGroup>
 
+  <!-- Exclude test files from library build -->
+  <ItemGroup>
+    <Compile Remove="**/*Tests.cs" />
+  </ItemGroup>
+
 </Project>

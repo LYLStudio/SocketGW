@@ -26,9 +26,9 @@ public sealed class GatewayServer : IDisposable
     private readonly CancellationTokenSource _shutdownCts = new();
 
     // Runtime stats
-    private long _totalClientConnections;
-    private int _currentClientConnections;
-    private long _totalBytesRelayed;
+    private long _totalClientConnections = 0;
+    private int _currentClientConnections = 0;
+    private long _totalBytesRelayed = 0; // Updated by ConnectionRelay when byte tracking is enabled
 
     // Track active relay tasks for graceful shutdown
     private readonly ConcurrentDictionary<string, CancellationTokenSource> _activeRelays = new();

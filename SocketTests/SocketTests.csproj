@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SocketClientLib\SocketClientLib.csproj" />
+    <ProjectReference Include="..\SocketCommon\SocketCommon.csproj" />
   </ItemGroup>
 
 </Project>

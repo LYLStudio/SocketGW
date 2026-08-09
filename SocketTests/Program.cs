@@ -32,7 +32,7 @@ sealed class ClientResult
     public int Errors { get; set; }
 }
 
-sealed class Args
+public sealed class Args
 {
     public string Mode { get; set; } = "basic";
     public int NumClients { get; set; } = 100;

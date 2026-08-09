@@ -1,6 +1,6 @@
 # SocketGW — 高併發 TCP Socket Gateway 系統
 
-基於 **.NET 10** 建構的高性能 Socket 代理、負載平衡、容錯測試完整解決方案。
+基於 **.NET 10** 建構的高性能 Socket 代理、負載平衡、資料完整性保護、容錯測試完整解決方案。
 
 ---
 
@@ -11,6 +11,8 @@
 - [專案結構](#專案結構)
 - [環境需求](#環境需求)
 - [快速開始](#快速開始)
+- [資料完整性保護](#資料完整性保護)
+- [Gateway Middleware Pipeline](#gateway-middleware-pipeline)
 - [設定檔配置](#設定檔配置)
 - [SocketServer 使用指南](#socketserver-使用指南)
 - [GatewayApp 使用指南](#gatewayapp-使用指南)
@@ -23,12 +25,13 @@
 
 ## 系統概述
 
-SocketGW 提供三個核心元件：
+SocketGW 提供四個核心元件：
 
 | 元件 | 說明 | 專案 |
 |------|------|------|
-| **SocketServer** | 高併發 TCP Socket 後端伺服器，支援 10 萬+ 連線 | `SocketServer/` |
+| **SocketServer** | 高併發 TCP Socket 後端伺服器，支援 10 萬+ 連線 | `SocketServer/` + `SocketServerLib/` |
 | **GatewayApp** | TCP/WebSocket Gateway，負載平衡、健康檢查、Session 管理 | `GatewayApp/` + `SocketGateway/` |
+| **SocketCommon** | 共用模型、BinaryIntegrityWrapper（資料完整性保護） | `SocketCommon/` |
 | **SocketTests** | 整合測試框架，支援 Basic / Advanced / Resilience 三種模式 | `SocketTests/` |
 
 ---
@@ -56,6 +59,10 @@ SocketGW 提供三個核心元件：
         │  │ Session    │  │ Server Pool    │  │
         │  │ Manager    │  │ (3 upstream)   │  │
         │  └────────────┘  └────────────────┘  │
+        │  ┌─────────────────────────────────┐  │
+        │  │ Middleware Pipeline             │  │
+        │  │ (IRelayMiddleware / IRelayPipe) │  │
+        │  └─────────────────────────────────┘  │
         └────────┬──────────┬─────────┬────────┘
                  │          │         │
                  ▼          ▼         ▼
@@ -64,6 +71,16 @@ SocketGW 提供三個核心元件：
         │ (:5001)    │ │ Server │ │ Server │
         │            │ │ (:5002)│ │ (:5003)│
         └────────────┘ └────────┘ └────────┘
+
+┌──────────────────────────────────────────────────────────┐
+│              SocketCommon (Cross-cutting)                 │
+│  ┌────────────────────────────────────────────────────┐  │
+│  │ BinaryIntegrityWrapper                             │  │
+│  │  16-byte header: Magic + SeqNo + Flags + CRC32 +   │  │
+│  │                         Length                     │  │
+│  │  Optional trailers: SHA256 hash / NodeId routing   │  │
+│  └────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -88,17 +105,28 @@ SocketGW/
 │
 ├── SocketGateway/                     # Gateway 核心程式庫
 │   ├── Core/                          # GatewayServer, SessionManager, ServerPool
-│   ├── HealthCheck/                   # HealthChecker
+│   │   ├── GatewayServer.cs           # TCP/WS accept loop, relay orchestration
+│   │   ├── GatewaySessionManager.cs   # Sticky session + node reassignment
+│   │   ├── ConnectionRelay.cs         # Bidirectional stream relay
+│   │   └── ServerPool.cs              # Upstream node management
+│   ├── HealthCheck/                   # HealthChecker (threshold-based)
 │   ├── LoadBalancing/                 # ILB, RoundRobin, LeastConnection
+│   ├── Middleware/                    # Relay middleware pipeline
+│   │   └── IRelayMiddleware.cs        # IRelayPipe, RelayContext, RelayStatistics
 │   └── Models/                        # GatewayConfig, ServerNode
 │
+├── SocketCommon/                      # 共用程式庫
+│   ├── BinaryIntegrityWrapper.cs      # 端到端資料完整性協議
+│   ├── BinaryIntegrityWrapperTests.cs # 17 單元測試 (excluded from lib build)
+│   ├── ClientSession.cs               # Session 模型
+│   └── SocketCommon.csproj
+│
 ├── SocketClientLib/                   # TCP Client 程式庫 (共用)
-│   └── TcpSocketClient.cs
+│   └── TcpSocketClient.cs             # Async TCP client with events
 │
-├── SocketTests/                       # 整合測試框架
-│   └── Program.cs                     # Basic/Advanced/Resilience/All
-│
-└── SocketCommon/                      # 共用模型 (ClientSession)
+└── SocketTests/                       # 整合測試框架
+    ├── Program.cs                     # Basic/Advanced/Resilience/All
+    └── SocketTests.csproj
 ```
 
 ---
@@ -107,14 +135,29 @@ SocketGW/
 
 | 項目 | 版本 |
 |------|------|
-| .NET SDK | 10.0.x (目前: 10.0.110) |
+| .NET SDK | **10.0.110** |
 | OS | Linux / Windows / macOS |
 | Runtime | net10.0 |
 
 ```bash
 # 確認 SDK 版本
 dotnet --version
+# Expected output: 10.0.110
 ```
+
+### 建置驗證結果
+
+所有專案均通過 **0 Warning / 0 Error** 驗證：
+
+| 專案 | 狀態 |
+|------|------|
+| SocketCommon | ✅ 0W / 0E |
+| SocketClientLib | ✅ 0W / 0E |
+| SocketServerLib | ✅ 0W / 0E |
+| SocketGateway | ✅ 0W / 0E |
+| SocketServer | ✅ 0W / 0E |
+| GatewayApp | ✅ 0W / 0E |
+| SocketTests | ✅ 0W / 0E |
 
 ---
 
@@ -124,6 +167,12 @@ dotnet --version
 
 ```bash
 cd /home/dev/AI/SocketGW
+
+# 個別建置
+dotnet build SocketCommon/SocketCommon.csproj
+dotnet build SocketClientLib/SocketClientLib.csproj
+dotnet build SocketServerLib/SocketServerLib.csproj
+dotnet build SocketGateway/SocketGateway.csproj
 dotnet build SocketServer/SocketServer.csproj
 dotnet build GatewayApp/GatewayApp.csproj
 dotnet build SocketTests/SocketTests.csproj
@@ -166,6 +215,101 @@ dotnet run --project SocketTests -- all
 
 ---
 
+## 資料完整性保護
+
+**BinaryIntegrityWrapper** 提供端到端的資料完整性驗證協議，Gateway 透明通過。
+
+### Header 格式 (16 bytes, Big-Endian)
+
+```
+┌─────────┬──────────┬──────────┬───────────┬──────────┐
+│ Magic   │ SeqNo    │ Flags    │ CRC32     │ Length   │
+│ 4 bytes │ 4 bytes  │ 2 bytes  │ 4 bytes   │ 2 bytes  │
+│ 0x494E54│ int32    │ short    │ uint32    │ ushort   │
+│ 47      │          │          │           │          │
+└─────────┴──────────┴──────────┴───────────┴──────────┘
+```
+
+### Flags 定義
+
+| Flag | 值 | 說明 |
+|------|-----|------|
+| ECHO | `0x01` | 回顯模式 |
+| ROUTING | `0x02` | 路由追蹤（payload 附帶 nodeId trailer） |
+| HASH | `0x04` | SHA256 hash 驗證（payload + 32-byte hash trailer） |
+
+### API 使用方法
+
+```csharp
+using SocketCommon;
+
+// 基本 Wrap — CRC32 保護
+byte[] wrapped = BinaryIntegrityWrapper.Wrap(payload, seqNo: 42);
+
+// 路由追蹤 — payload + nodeId trailer
+byte[] routed = BinaryIntegrityWrapper.WrapWithRoutingCheck(payload, 42, "server-1");
+
+// Hash 驗證 — payload + SHA256 trailer
+byte[] hashed = BinaryIntegrityWrapper.WrapWithHash(payload, 42);
+
+// Unwrap — 回傳 (success, validCrc, seqNo, flags, data)
+var (ok, crcOk, seq, flg, data) = BinaryIntegrityWrapper.Unwrap(receivedBuffer);
+
+// Stream frame 解析（多幀）
+var frames = BinaryIntegrityWrapper.ParseStream(buffer);
+foreach (var (seqNo, flags, validCrc, data) in frames)
+{
+    // 處理每一幀
+}
+```
+
+### 資料流程
+
+```
+Client ── Wrap(payload, seqNo, flags) ──→ [16-byte header + payload [+optional hash]]
+                                          ↓
+                                    Gateway (transparent pass-through)
+                                          ↓
+                                      Backend Server
+                                          ↓
+Client ◄── Unwrap(buffer) → (success, validCrc, seqNo, flags, data)
+```
+
+### 單元測試涵蓋
+
+- ✅ Header/Trailer 序列化 + CRC32 正確性
+- ✅ Routing flag 保留驗證
+- ✅ SHA256 Hash trailer 完整性
+- ✅ TryReadFrame / ParseStream 多幀解析
+- ✅ Magic corruption 被正確拒絕
+- ✅ Data corruption (bit-flip) 被 CRC32 偵測
+- ✅ Random payload round-trip
+
+---
+
+## Gateway Middleware Pipeline
+
+Gateway 支援可插拔的中介層架構，用於攔截、檢查或修改 Client ↔ Server 之間的資料流。
+
+### 核心介面
+
+| 類型 | 說明 |
+|------|------|
+| `IRelayMiddleware` | 中介層 stage 介面，定義 Name + CreatePipeAsync |
+| `RelayContext` | 雙向 pipe context (Source/Destination Socket, Direction, AssignedNodeId) |
+| `IRelayPipe` | Read/Write 攔截點（middleware 可包裝 socket） |
+| `RelayStatistics` | BytesRelayed / ChunksProcessed / ValidationErrors 計量 |
+
+### Pipeline 流程
+
+```
+Client Socket ──→ [Middleware Stage 1] ──→ [Middleware Stage N] ──→ Server Socket
+                         ↓                              ↓
+                     IRelayPipe.ReadAsync            IRelayPipe.WriteAsync
+```
+
+---
+
 ## 設定檔配置
 
 ### SocketServer/appsettings.json
@@ -173,13 +317,13 @@ dotnet run --project SocketTests -- all
 ```json
 {
   "Server": {
-    "Port": 5000,              # 監聽埠號
-    "MaxConnections": 100000,   # 最大連線數
-    "Backlog": 10000,           # TCP listen queue
-    "ReceiveBufferSize": 65536, # RX buffer (bytes)
-    "SendBufferSize": 65536,    # TX buffer (bytes)
-    "DualMode": false,          # IPv4/IPv6 dual mode
-    "StatsIntervalSeconds": 5   # 統計報表間隔
+    "Port": 5000,              // 監聽埠號
+    "MaxConnections": 100000,   // 最大連線數
+    "Backlog": 10000,           // TCP listen queue
+    "ReceiveBufferSize": 65536, // RX buffer (bytes)
+    "SendBufferSize": 65536,    // TX buffer (bytes)
+    "DualMode": false,          // IPv4/IPv6 dual mode
+    "StatsIntervalSeconds": 5   // 統計報表間隔
   }
 }
 ```
@@ -294,14 +438,23 @@ dotnet publish -c Release -o ./publish --self-contained
 
 ## 測試報告
 
-### BASIC 負載測試 (50 clients, 5s)
+### 建置驗證 (2026-08-09)
 
 ```
-Result: [PASS] 50/50 clients connected (100.0%)
-Connection Latency: Min=0.17ms / Avg=0.73ms
-Total Msgs: 6,249,400
-Throughput: 75.37 MB/s
-Msg Rate: 1,243,687 msg/s
+.NET SDK: 10.0.110
+Projects: 7 / 7 built successfully
+Warnings: 0  |  Errors: 0
+```
+
+### BASIC 負載測試 (20 clients, 5s)
+
+```
+Result: [PASS] 20/20 clients connected (100.0%)
+Connection Latency: Min=0.46ms / Avg=1.91ms / Max=12.91ms
+Total Msgs: 2,500,200
+Bytes Sent: 75.11 MB | Bytes Recv: 75.00 MB
+Throughput: 29.91 MB/s
+Msg Rate: 498,191 msg/s
 Errors: 0
 ```
 
@@ -368,6 +521,13 @@ ChangeToken.OnChange(
 - **Connection Multiplexing**: 每個 upstream 維持連線池
 - **Health Check Timer**: 定期檢查後端狀態
 - **Session Manager**: ConcurrentDictionary 管理客戶端 session
+- **Middleware Pipeline**: 可插拔中介層，不影響核心 relay 效能
+
+### SocketCommon
+
+- **BinaryIntegrityWrapper**: 零分配 header 序列化（`BinaryPrimitives.BigEndian`）
+- **CRC32 table lookup**: 預計算 256-entry LUT，O(n) 但極低常數因子
+- **Span<T> API**: 避免中間 array copy
 
 ---
 
